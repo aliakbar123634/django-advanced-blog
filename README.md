@@ -21,11 +21,11 @@ Includes authentication, CRUD blog system, dashboards, category filtering, searc
 
 ## 🛠️ Tech Stack
 
-- Python 3.x
+- Python 
 - Django
 - Bootstrap
 - Crispy Forms
-- Database: **SQLite** (or change to MySQL/PostgreSQL if used)
+- Database: **SQLite** 
 - Git & GitHub
 
 ---
