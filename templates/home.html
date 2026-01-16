@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<!-- ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+/* ---------- Featured Post Jumbotron ---------- */
+.jumbotron {
+    position: relative;
+    color: white;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.jumbotron::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4); /* overlay for text readability */
+    border-radius: 15px;
+}
+
+.jumbotron .col-md-8 {
+    position: relative; /* text above overlay */
+}
+
+/* ---------- Cards for posts ---------- */
+.card {
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ---------- Sidebar ---------- */
+.blog-sidebar {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+/* ---------- Typography ---------- */
+.card h3 a {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+}
+
+.card h3 a:hover {
+    color: #ffc107;
+}
+
+/* ---------- Section Titles ---------- */
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffc107;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+</style>
+
+<div class="row">
+
+    <!-- MAIN CONTENT -->
+    <div class="col-md-8 blog-main">
+
+        <!-- Featured Post -->
+        {% for post in featured_post %}
+            {% if forloop.first %}
+                <div class="jumbotron" style="background-image: url({{ post.featured_image.url }});">
+                    <div class="col-md-8 px-0">
+                        <h1 class="display-4 font-italic">{{ post.title }}</h1>
+                        <p class="lead my-3">{{ post.short_description }}</p>
+                        <p class="lead mb-0">
+                            <a href="{% url 'blogs' post.slug %}" class="text-white font-weight-bold">Continue reading...</a>
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <!-- Featured Posts Other -->
+        <h3 class="section-title">Featured Posts</h3>
+        <div class="row">
+            {% for post in featured_post %}
+                {% if not forloop.first %}
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm">
+                            <img src="{{ post.featured_image.url }}" class="card-img-top rounded" alt="{{ post.title }}">
+                            <div class="card-body">
+                                <h3><a href="{% url 'blogs' post.slug %}">{{ post.title }}</a></h3>
+                                <small class="text-muted">{{ post.created_at|timesince }} ago by {{ post.author }}</small>
+                                <p class="card-text mt-2">{{ post.short_description|truncatewords:15 }}</p>
+                                <a href="{% url 'blogs' post.slug %}" class="text-warning font-weight-bold">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Recent Posts -->
+        <h3 class="section-title">Recent Posts</h3>
+        {% for post in posts %}
+            <div class="card border-0 shadow-sm">
+                <img src="{{ post.featured_image.url }}" class="card-img-top rounded" alt="{{ post.title }}">
+                <div class="card-body">
+                    <h3><a href="{% url 'blogs' post.slug %}">{{ post.title }}</a></h3>
+                    <small class="text-muted">{{ post.created_at|timesince }} ago by {{ post.author }}</small>
+                    <p class="card-text mt-2">{{ post.short_description|truncatewords:15 }}</p>
+                    <a href="{% url 'blogs' post.slug %}" class="text-warning font-weight-bold">Read More</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    <!-- /.blog-main -->
+
+    <!-- SIDEBAR -->
+    <aside class="col-md-4 blog-sidebar">
+
+        <!-- About Us -->
+        <div class="p-3 mb-3 bg-light rounded shadow-sm">
+            <h4 class="font-italic">{{ about_us.about_heading }}</h4>
+            <p class="mb-0">{{ about_us.about_disc }}</p>
+        </div>
+
+        <!-- Follow Us -->
+        {% if follow_us %}
+            <div class="p-3 bg-light rounded shadow-sm">
+                <h4 class="font-italic">Follow Us</h4>
+                <ol class="list-unstyled">
+                    {% for i in follow_us %}
+                        <li>
+                            <i class="fa fa-link"></i>
+                            <a href="{{ i.link }}" target="_blank">{{ i.plateform }}</a>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        {% else %}
+            <div class="p-3 bg-light rounded shadow-sm">
+                <h4 class="font-italic">Follow Us</h4>
+                <p>No links found...</p>
+            </div>
+        {% endif %}
+
+    </aside>
+    <!-- /.blog-sidebar -->
+
+</div>
+<!-- /.row -->
+
+{% endblock %}
+

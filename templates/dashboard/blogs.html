@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+    {% comment %} left side bar {% endcomment %}
+    {% comment %} lode side here {% endcomment %}
+     {% include "dashboard/sidebar.html" %} 
+  
+    {% comment %} right side content {% endcomment %}
+    <div class="col-md-9">
+
+        <a href="{% url 'add_blogs' %}" class="btn btn-dark text-light float-right mb-2">Add New</a>
+<div class="card shadow-sm border-0">
+  <div class="card-header bg-white">
+      <h4 class="mb-0">All Blogs</h4>
+  </div>
+
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover table-borderless align-middle mb-0">
+        <thead class="bg-light">
+          <tr>
+            <th>#</th>
+            <th>Blog</th>
+            <th>Category</th>
+            <th>Author</th>
+            {% comment %} <th>Image</th> {% endcomment %}
+            {% comment %} <th>Description</th> {% endcomment %}
+            <th>Status</th>
+            <th>Featured</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for i in blog_ele %}
+        <tr class="border-bottom">
+          <td>{{ forloop.counter }}</td>
+
+          <td style="width:200px;">
+            <strong class="d-block">{{ i.title }}</strong>
+            {% comment %} <small class="text-muted">{{ i.slug }}</small> {% endcomment %}
+          </td>
+
+          <td>{{ i.category }}</td>
+          <td>{{ i.author }}</td>
+
+          {% comment %} <td>
+            <img src="{{ i.featured_image.url }}" 
+            class="rounded" 
+            style="width:55px; height:55px; object-fit:cover;">
+          </td>
+
+          <td style="width:250px;">
+            {{ i.short_description|truncatechars:45 }}
+          </td> {% endcomment %}
+
+          <td>
+            <span class="badge badge-success">{{ i.status }}</span>
+          </td>
+
+          <td>
+            {% if i.is_featured %}
+              <span class="badge badge-warning">Yes</span>
+            {% else %}
+              <span class="badge badge-secondary">No</span>
+            {% endif %}
+          </td>
+
+          <td class="text-center">
+            <a href="{% url 'edit_blog' i.id %}" 
+               class="btn btn-light btn-sm border rounded mr-1">
+              <i class="fa fa-edit text-success"></i>
+            </a>
+            <a href="{% url 'delete_blog' i.id %}" 
+               class="btn btn-light btn-sm border rounded">
+              <i class="fa fa-trash text-danger"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+ </div>  
+
+{% endblock content %}
