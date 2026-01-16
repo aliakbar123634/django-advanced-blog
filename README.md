@@ -48,7 +48,7 @@ Clone the repository:
 bash
 Copy code
 git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+cd <https://github.com/aliakbar123634/django-advanced-blog>
 Create & activate virtual environment:
 
 bash
