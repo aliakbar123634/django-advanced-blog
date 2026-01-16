@@ -47,8 +47,8 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <https://github.com/aliakbar123634/django-advanced-blog>
+git clone https://github.com/aliakbar123634/django-advanced-blog
+cd <django-advanced-blog>
 Create & activate virtual environment:
 
 bash
@@ -76,8 +76,7 @@ Now visit:
 bash
 Copy code
 http://127.0.0.1:8000/
-📸 Screenshots
-Add screenshots here (Home page + Dashboard).
+
 
 🤝 Contributing
 Pull requests are welcome.
