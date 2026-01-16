@@ -87,27 +87,11 @@ This project is open-source and available under the MIT License.
 
 👨‍💻 Author
 Ali Akbar Shah
-🔗 LinkedIn: <your-link>
-💻 GitHub: <your-github>
+🔗 LinkedIn: <https://www.linkedin.com/in/ali-akbar-shah-802661358/>
+💻 GitHub: <https://github.com/aliakbar123634>
 
 yaml
 Copy code
 
 ---
 
-## 🔥 Quick checklist for your repo (important)
-✅ README clean  
-✅ **requirements.txt updated**  
-✅ repo name professional  
-✅ **screenshots add karo** (must)  
-✅ pin this repo on GitHub
-
----
-
-Agar tum chaho, main tumhare liye:
-- README me **badges** add kar du (Django, Python, Bootstrap)
-- screenshots placement + sizes
-- repo description + tags (GitHub topics)
-- best repo name
-
-Bas apna **repo link** paste kar do.
